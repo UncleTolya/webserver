@@ -17,7 +17,8 @@ public class AllRequestServlet extends HttpServlet {
         Map<String, Object> pageVariables = createPageVariablesMap(req);
         pageVariables.put("message", "");
 
-        resp.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
+        resp.getWriter().println(PageGenerator.instance()
+                .getPage("page.html", pageVariables));
 
         resp.setContentType("text/html;charset=utf-8");
         resp.setStatus(HttpServletResponse.SC_OK);
@@ -32,20 +33,23 @@ public class AllRequestServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
 
         if (message == null || message.isEmpty()) {
+            System.out.println(message + "message is empty");
             resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
         } else {
+            System.out.println("message is not empty " + message);
             resp.setStatus(HttpServletResponse.SC_OK);
         }
         pageVariables.put("message", message == null ? "" : message);
 
-        resp.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
+        resp.getWriter().println(PageGenerator.instance()
+                .getPage("page.html", pageVariables));
 
     }
 
     private static Map<String, Object> createPageVariablesMap(HttpServletRequest req) {
         Map<String, Object> pageVariables = new HashMap<>();
         pageVariables.put("method", req.getMethod());
-        pageVariables.put("URL", req.getRequestURI());
+        pageVariables.put("URL", req.getRequestURL().toString());
         pageVariables.put("pathInfo", req.getPathInfo());
         pageVariables.put("sessionId", req.getSession().getId());
         pageVariables.put("parameters", req.getParameterMap().toString());
