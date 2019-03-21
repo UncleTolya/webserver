@@ -1,5 +1,11 @@
+/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/servlets/SignUpServlet.java
 /Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/templater/PageGenerator.java
 /Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/main/Main.java
+/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/dbservice/DBException.java
+/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/dbservice/dao/UsersDAO.java
+/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/datasets/UsersDataSet.java
 /Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/servlets/MirrorRequestServlet.java
-/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/Frontend.java
+/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/accountservice/AccountService.java
+/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/dbservice/DBService.java
+/Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/servlets/SignInServlet.java
 /Users/mhlv/IdeaProjects/mhlvWEB/src/main/java/servlets/AllRequestServlet.java

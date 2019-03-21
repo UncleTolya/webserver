@@ -42,32 +42,17 @@ public class SignUpServlet extends HttpServlet {
         variables.put("login", login);
         variables.put("message", "some error");
 
-
-        UsersDataSet userDataSet = null;
+        resp.setContentType("text/html;charset=utf-8");
         try {
-            userDataSet = accountService.getUser(login, password);
+            accountService.addNewUser(login, password);
+            resp.setStatus(HttpServletResponse.SC_OK);
+            variables.put("message", "has been registered, please signin");
+            resp.getWriter().println(PageGenerator.instance()
+                        .getPage("index.html", variables));
         } catch (DBException e) {
             e.printStackTrace();
         }
-        if (login.isEmpty() || password.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        } else if (userDataSet == null) {
-            try {
-                accountService.addNewUser(login, password);
-            } catch (DBException e) {
-                e.printStackTrace();
-            }
-            resp.setStatus(HttpServletResponse.SC_OK);
-            variables.put("message", "has been registered, please signin");
 
-        } else {
-            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            variables.put("message", "had registered already, please signin");
-        }
-
-        resp.setContentType("text/html;charset=utf-8");
-        resp.getWriter().println(PageGenerator.instance()
-                .getPage("index.html", variables));
     }
 
 }

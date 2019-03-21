@@ -46,19 +46,19 @@ public class SignInServlet extends HttpServlet {
         } catch (DBException e) {
             e.printStackTrace();
         }
-        if (login.isEmpty() || password.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        } else if (userDataSet != null) {
-            resp.setStatus(HttpServletResponse.SC_OK);
-            variables.put("message", "log in. Welcome!");
-
-        } else {
-            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            variables.put("message", "is not found. Please register, or check login and password.");
-        }
 
         resp.setContentType("text/html;charset=utf-8");
-        resp.getWriter().println(PageGenerator.instance()
-                .getPage("index.html", variables));
+        if (login.isEmpty() || password.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            resp.getWriter().println("Unauthorized");
+        } else if (userDataSet != null) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            resp.getWriter().println("Authorized: " + login);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            resp.getWriter().println("Unauthorized");
+        }
+
+
     }
 }
